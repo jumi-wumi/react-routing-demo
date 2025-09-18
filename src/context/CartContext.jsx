@@ -1,10 +1,16 @@
+// Syfte: Detta är en Context-fil som låter alla komponenter inom Provider få tillgång till carts variables och funktioner oavsett nesting, utan att skicka props. 
+
+// Importer från React:
+// 1. createContext: skapar ett Context-objekt som kan delas globalt i komponentträdet
+// 2. useState: React hook för att spara ett lokalt state, alltså reaktivt värde i en variabel (cart)
 import { createContext, useState } from "react";
 
-// Skapa context-objektet som ska hålla cart datan och funktioner 
+// Skapa context-objektet som ska hålla cart-datan och dess funktioner som vi exporterar så att andra filer kan importera CartContext och genom useContext-hooken få tillgång till datan och metoderna i objektet.
+// CartContext-objektet som vi skapar här blir länken som parar ihop kompoenterna som vill komma åt context:et med useContext(CartContext) och Provider. När en child-komponent till CartContext.Proviver använder hook:en useContext(CartContext) läser hook:en värdet som skickas i Provider.value
 // Fix för ESlint error: gör en cartContext.js fil med bara export på const CartContext = createContext() och döp om denna filen till CartProvider.jsx och updatera imports
 export const CartContext = createContext();
 
-// Skapa Providern som ska omsluta de komponenter som behöver tillgång till kundvagnen
+// Skapa Provider-komponenten som omsluter de komponenter som behöver ha tillgång till cart-data och funktioner 
 export const CartProvider = ({ children }) => {
   // deklarera lokala state
   const [cart, setCart] = useState([]);
