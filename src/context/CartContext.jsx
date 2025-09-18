@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 
-// Skapa context-objektet som ska hålla cart datan och funktioner
+// Skapa context-objektet som ska hålla cart datan och funktioner 
+// Fix för ESlint error: gör en cartContext.js fil med bara export på const CartContext = createContext() och döp om denna filen till CartProvider.jsx och updatera imports
 export const CartContext = createContext();
 
 // Skapa Providern som ska omsluta de komponenter som behöver tillgång till kundvagnen
